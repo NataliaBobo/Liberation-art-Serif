@@ -113,10 +113,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div>
             <h4 className="font-bold mb-4">Contact</h4>
-            <ul className="space-y-2 opacity-80">
-              <li>KCA University</li>
-              <li>Nairobi, Kenya</li>
-              <li>info@doncastrogalleria.com</li>
+            <ul className="space-y-2 opacity-80 text-sm">
+              <li>KCA University, Nairobi</li>
+              <li>P.O.Box 20355-00200</li>
+              <li>Tel: +254113096179</li>
+              <li>fidelcastro6403@gmail.com</li>
             </ul>
           </div>
         </div>

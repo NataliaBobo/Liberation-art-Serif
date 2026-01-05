@@ -273,21 +273,28 @@ export default function Home() {
               </p>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-lg text-primary">
+                  <div className="bg-primary/10 p-3 rounded-lg text-primary shrink-0">
                     <Users className="w-6 h-6" />
                   </div>
                   <div>
                     <h4 className="font-bold mb-1">Visit Us</h4>
                     <p className="text-muted-foreground">KCA University, Nairobi</p>
+                    <p className="text-muted-foreground">P.O.Box 20355-00200</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-lg text-primary">
+                  <div className="bg-primary/10 p-3 rounded-lg text-primary shrink-0">
                     <HeartHandshake className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-bold mb-1">Partner With Us</h4>
-                    <p className="text-muted-foreground">Support our mobile therapy unit</p>
+                    <h4 className="font-bold mb-1">Connect</h4>
+                    <p className="text-muted-foreground">Tel/Whatsapp: +254113096179</p>
+                    <p className="text-muted-foreground">Email: fidelcastro6403@gmail.com</p>
+                    <div className="mt-2 space-y-1 text-sm">
+                      <p className="text-muted-foreground font-medium">Instagram: <span className="text-primary">don_castro_galleria_ltd</span></p>
+                      <p className="text-muted-foreground font-medium">TikTok: <span className="text-primary">don_castro_galleria</span></p>
+                      <a href="https://www.linkedin.com/in/fidel-castro-a2baa2398" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline block mt-2 font-medium">View LinkedIn Profile</a>
+                    </div>
                   </div>
                 </div>
               </div>
