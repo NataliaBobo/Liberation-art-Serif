@@ -38,6 +38,18 @@ const services = [
 ];
 
 import artwork1 from "@assets/1000023038_1767651988912.jpg";
+import artwork2 from "@assets/1000023028_1767652187210.jpg";
+import artwork3 from "@assets/1000023027_1767652187224.jpg";
+import artwork4 from "@assets/1000023025_1767652187224.jpg";
+import artwork5 from "@assets/1000023044_1767652198882.jpg";
+
+const galleryImages = [
+  { src: artwork1, alt: "Christ Mission" },
+  { src: artwork2, alt: "Starry Night" },
+  { src: artwork3, alt: "Portrait Study" },
+  { src: artwork4, alt: "Bird in Water" },
+  { src: artwork5, alt: "Tropical Bird" },
+];
 
 const team = [
   { 
@@ -262,25 +274,29 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-8 text-center font-serif">Art Director's Gallery</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="rounded-2xl overflow-hidden border shadow-lg bg-card"
-              >
-                <img 
-                  src={artwork1} 
-                  alt="DonCastro Galleria Artwork" 
-                  className="w-full h-auto object-cover"
-                />
-                <div className="p-4 bg-card">
-                  <p className="text-sm text-muted-foreground italic text-center font-medium">Original Artwork by Fidel Castro</p>
-                </div>
-              </motion.div>
-              <div className="flex items-center justify-center p-8 bg-primary/5 rounded-2xl border border-dashed border-primary/20">
-                <p className="text-muted-foreground text-center italic">More gallery pieces coming soon...</p>
-              </div>
+          <div className="max-w-6xl mx-auto">
+            <h3 className="text-3xl font-bold mb-12 text-center font-serif">Art Director's Gallery</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {galleryImages.map((image, idx) => (
+                <motion.div 
+                  key={idx}
+                  whileHover={{ scale: 1.03, y: -5 }}
+                  className="rounded-2xl overflow-hidden border shadow-lg bg-card h-full flex flex-col"
+                >
+                  <div className="aspect-[3/4] overflow-hidden bg-muted">
+                    <img 
+                      src={image.src} 
+                      alt={image.alt} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4 bg-card mt-auto border-t">
+                    <p className="text-sm text-muted-foreground italic text-center font-medium">
+                      {image.alt} — Fidel Castro
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
