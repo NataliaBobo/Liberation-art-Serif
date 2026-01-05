@@ -37,11 +37,13 @@ const services = [
   { icon: HeartHandshake, title: "Mental Support", desc: "Safe, confidential space to address mental health challenges." },
 ];
 
+import artwork1 from "@assets/1000023038_1767651988912.jpg";
+
 const team = [
   { 
     initials: "FC", 
     name: "Fidel Castro", 
-    role: "Project Director", 
+    role: "Art Director", 
     desc: "School of Education - Creative Arts & Wellness. Leading overall coordination and therapy sessions." 
   },
   { 
@@ -243,7 +245,7 @@ export default function Home() {
             <p className="text-xl text-muted-foreground">Passionate professionals dedicated to mental health and creative healing</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
             {team.map((member) => (
               <motion.div
                 key={member.name}
@@ -258,6 +260,28 @@ export default function Home() {
                 <p className="text-muted-foreground">{member.desc}</p>
               </motion.div>
             ))}
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold mb-8 text-center font-serif">Art Director's Gallery</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="rounded-2xl overflow-hidden border shadow-lg bg-card"
+              >
+                <img 
+                  src={artwork1} 
+                  alt="DonCastro Galleria Artwork" 
+                  className="w-full h-auto object-cover"
+                />
+                <div className="p-4 bg-card">
+                  <p className="text-sm text-muted-foreground italic text-center font-medium">Original Artwork by Fidel Castro</p>
+                </div>
+              </motion.div>
+              <div className="flex items-center justify-center p-8 bg-primary/5 rounded-2xl border border-dashed border-primary/20">
+                <p className="text-muted-foreground text-center italic">More gallery pieces coming soon...</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
