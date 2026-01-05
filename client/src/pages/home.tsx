@@ -162,10 +162,7 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-8">Our Mission</h2>
             <p className="text-xl leading-relaxed text-muted-foreground mb-12">
-              DonCastro Galleria is dedicated to establishing a mobile, accessible, and creative mental health support space by repurposing a shipping container into an art therapy unit, piloted at KCA University.
-            </p>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              Our mobile unit provides a safe, inclusive environment for emotional healing, creative expression, and mental wellness while serving as a practice hub for peer counsellors to build their skills in trauma-informed art-based interventions.
+              DonCastro Galleria is dedicated to enhancing self-discovery and personal growth through creative engagement. We are establishing a mobile, accessible creative mental health support space by repurposing a shipping container into an art therapy unit, piloted at KCA University. Our mission is to raise awareness and reduce stigma around mental health and wellness.
             </p>
           </motion.div>
         </div>
