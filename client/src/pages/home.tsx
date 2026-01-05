@@ -23,6 +23,22 @@ const services = [
   { icon: BookOpen, title: "Journaling Workshops", desc: "Guided journaling techniques for self-reflection and emotional processing." },
   { icon: HeartHandshake, title: "Mindfulness Sessions", desc: "Meditation and mindfulness practices integrated with creative activities." },
   { icon: Users, title: "Group Support", desc: "Community-based healing circles fostering connection and shared growth." },
+  { icon: Palette, title: "Painting", desc: "Express emotions through colors and brushstrokes. Discover inner peace through canvas art." },
+  { icon: Activity, title: "String Art", desc: "Create stunning geometric patterns. A meditative practice that builds focus and patience." },
+  { icon: Gem, title: "Glass Art", desc: "Work with glass to create beautiful pieces while learning about light and transformation." },
+  { icon: Hammer, title: "Woodworks", desc: "Craft functional pieces. Connect with natural materials while developing practical skills." },
+  { icon: Flame, title: "Pyrography", desc: "The ancient art of wood burning. Practice mindfulness and precision." },
+  { icon: SprayCan, title: "Spray Painting", desc: "Urban art meets therapy. Express yourself boldly through aerosol art." },
+  { icon: Coffee, title: "Pottery", desc: "Shape clay with your hands. A grounding, tactile therapeutic experience." },
+  { icon: Scissors, title: "Crochet & Knitting", desc: "Create beautiful textiles. Rhythmic motions promote relaxation and mindfulness." },
+  { icon: Layers, title: "Rug Tufting", desc: "Design custom rugs using tufting guns. A satisfying craft that builds creativity." },
+  { icon: Box, title: "Sculpture", desc: "Bring visions to life in 3D. Explore form, space, and multimedia installations." },
+  { icon: Droplets, title: "Resin Art", desc: "Mix colors and embed objects for unique, translucent creations." },
+  { icon: PenTool, title: "Whittling", desc: "Meditative wood carving. Develop patience and precision with small sculptures." },
+  { icon: Flame, title: "Candle Making", desc: "Craft aromatic candles. Learn about fragrance blending and wax artistry." },
+  { icon: Gift, title: "DIY Ornaments", desc: "Create personalized decorations. Perfect for celebrating milestones." },
+  { icon: Monitor, title: "Digital Art", desc: "Merge technology with artistic expression through digital painting and design." },
+  { icon: BookOpen, title: "Storytelling", desc: "Share your narrative and preserve memories in therapeutic sessions." },
 ];
 
 const testimonials = [
