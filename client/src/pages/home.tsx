@@ -120,6 +120,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Vision & Goal Section */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-8 rounded-3xl bg-primary/5 border border-primary/10"
+            >
+              <h3 className="text-2xl font-bold mb-4 font-serif text-primary">Project Vision</h3>
+              <p className="text-lg leading-relaxed text-muted-foreground italic">
+                "To be a transformative space where creativity nature healing, self-discovery and emotional freedom empowering individuals to connect deeply with themselves and the world through art."
+              </p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-8 rounded-3xl bg-secondary/20 border border-secondary/20"
+            >
+              <h3 className="text-2xl font-bold mb-4 font-serif text-secondary-foreground">Project Goal</h3>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                DonCastro Galleria is dedicated to fostering emotional growth, mental wellness and personal exploration through art. By providing a safe expressive environment for creative engagement, we inspire individuals to manage stress, express their emotions and uncover their inner strengths and foster great coping abilities.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission Section */}
       <section id="mission" className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4 text-center max-w-4xl">
