@@ -100,7 +100,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               DonCastro Galleria
             </div>
             <p className="opacity-80 leading-relaxed max-w-xs">
-              Healing through art. A mobile therapy unit repurposed from a shipping container, bringing creativity and wellness to everyone.
+              Healing through art. A mobile art therapy unit transforming mental health support through creative expression, accessibility, and community care.
             </p>
           </div>
           <div>
