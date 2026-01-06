@@ -145,10 +145,10 @@ export default function Home() {
               A mobile art therapy unit providing accessible mental health support through creative expression at KCA University and beyond.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all" onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})}>
+              <Button size="lg" className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all" onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})} data-testid="button-explore-services">
                 Explore Services
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full border-2 bg-background/50 backdrop-blur-sm" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full border-2 bg-background/50 backdrop-blur-sm" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})} data-testid="button-join-mission">
                 Join Our Mission
               </Button>
             </div>
@@ -419,7 +419,7 @@ export default function Home() {
 
             <div className="bg-card p-8 rounded-3xl border shadow-lg">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" data-testid="form-contact">
                   <FormField
                     control={form.control}
                     name="name"
@@ -427,7 +427,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input placeholder="John Doe" {...field} data-testid="input-contact-name" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -440,7 +440,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="john@example.com" {...field} />
+                          <Input placeholder="john@example.com" {...field} data-testid="input-contact-email" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -453,13 +453,13 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="How can we help?" className="min-h-[120px]" {...field} />
+                          <Textarea placeholder="How can we help?" className="min-h-[120px]" {...field} data-testid="textarea-contact-message" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full text-lg py-6">
+                  <Button type="submit" className="w-full text-lg py-6" data-testid="button-submit-contact">
                     Send Message <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </form>
