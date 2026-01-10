@@ -500,6 +500,130 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Wellness Festivals Section */}
+      <section id="festivals" className="py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 dark:from-amber-950/20 dark:via-orange-950/20 dark:to-rose-950/20 relative overflow-hidden">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-amber-300/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-rose-300/30 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-300/20 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500/10 to-rose-500/10 text-amber-700 dark:text-amber-400 font-semibold text-sm mb-4 border border-amber-500/20">
+              🎪 Coming Soon
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-serif">Wellness Festivals</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Immersive celebrations of art, healing, and community connection bringing together creative expression and mental wellness.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h3 className="text-2xl font-bold text-amber-700 dark:text-amber-400">What to Expect</h3>
+              <div className="space-y-4">
+                {[
+                  { emoji: "🎨", title: "Live Art Sessions", desc: "Watch and participate in live painting, sculpture, and creative workshops" },
+                  { emoji: "🧘", title: "Mindfulness Activities", desc: "Guided meditation, yoga, and stress-relief practices in nature" },
+                  { emoji: "🎵", title: "Music & Performance", desc: "Healing sounds, drum circles, and expressive movement therapy" },
+                  { emoji: "🤝", title: "Community Healing Circles", desc: "Share stories, connect with others, and build supportive relationships" },
+                  { emoji: "🌿", title: "Nature Therapy", desc: "Grounding exercises and eco-art activities connecting with the environment" }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex items-start gap-4 p-4 rounded-2xl bg-white/60 dark:bg-white/5 backdrop-blur-sm border border-amber-200/50 dark:border-amber-800/30 hover:shadow-md transition-all"
+                  >
+                    <span className="text-2xl">{item.emoji}</span>
+                    <div>
+                      <h4 className="font-bold text-foreground">{item.title}</h4>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white/80 dark:bg-card/80 backdrop-blur-md rounded-3xl p-8 border-2 border-amber-200 dark:border-amber-800/50 shadow-xl"
+            >
+              <div className="text-center mb-6">
+                <span className="text-4xl">📍</span>
+                <h3 className="text-2xl font-bold mt-2 font-serif">Suggested Venue</h3>
+              </div>
+              
+              <div className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 rounded-2xl p-6 mb-6">
+                <h4 className="text-xl font-bold text-amber-800 dark:text-amber-300 mb-2">Karura Forest</h4>
+                <p className="text-amber-700 dark:text-amber-400 font-medium mb-1">Nairobi, Kenya</p>
+                <p className="text-sm text-muted-foreground">1,000+ hectares of pristine urban forest</p>
+              </div>
+              
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">🌳</span>
+                  <span>Natural healing environment surrounded by indigenous trees</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">🏞️</span>
+                  <span>Peaceful waterfalls and walking trails for mindfulness</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">🎭</span>
+                  <span>Outdoor amphitheater spaces for performances</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">🚗</span>
+                  <span>Easy accessibility from KCA University (15-min drive)</span>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-amber-200 dark:border-amber-800/50 text-center">
+                <p className="text-xs text-muted-foreground mb-3">Alternative venues also being considered:</p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {["Uhuru Gardens", "Nairobi Arboretum", "Paradise Lost"].map((venue) => (
+                    <span key={venue} className="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-medium">
+                      {venue}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-lg"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+              data-testid="button-festival-interest"
+            >
+              <Sparkles className="w-5 h-5 mr-2" />
+              Register Interest for Next Festival
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-24">
         <div className="container mx-auto px-4 max-w-4xl">
