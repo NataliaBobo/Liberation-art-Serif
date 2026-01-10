@@ -6,8 +6,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { 
   Palette, Activity, Gem, Hammer, Flame, SprayCan, 
   Coffee, Scissors, Layers, Box, Droplets, PenTool, 
-  Gift, Monitor, BookOpen, Users, HeartHandshake, ArrowRight 
+  Gift, Monitor, BookOpen, Users, HeartHandshake, ArrowRight,
+  Heart, HandHeart, Handshake, MessageCircle, Sparkles, ChevronDown
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -144,13 +153,125 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
               A mobile art therapy unit providing accessible mental health support through creative expression at KCA University and beyond.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
               <Button size="lg" className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all" onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})} data-testid="button-explore-services">
                 Explore Services
               </Button>
               <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full border-2 bg-background/50 backdrop-blur-sm" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})} data-testid="button-join-mission">
                 Join Our Mission
               </Button>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    size="lg" 
+                    className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 shadow-lg hover:shadow-xl transition-all text-white border-0 group"
+                    data-testid="button-get-involved"
+                  >
+                    <Sparkles className="w-5 h-5 mr-2 group-hover:animate-pulse" />
+                    Get Involved
+                    <ChevronDown className="w-5 h-5 ml-2 group-hover:translate-y-0.5 transition-transform" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent 
+                  className="w-72 p-2 rounded-2xl border-2 shadow-2xl bg-card/95 backdrop-blur-md"
+                  align="center"
+                  sideOffset={8}
+                >
+                  <DropdownMenuLabel className="text-center py-3">
+                    <span className="text-lg font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
+                      ✨ I'm Interested In...
+                    </span>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  
+                  <DropdownMenuItem 
+                    className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-950/30 dark:hover:to-purple-950/30 transition-all group"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+                    data-testid="dropdown-donations"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                      <Heart className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold">💝 Donations</div>
+                      <div className="text-xs text-muted-foreground">Support our mission financially</div>
+                    </div>
+                  </DropdownMenuItem>
+                  
+                  <DropdownMenuItem 
+                    className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-950/30 dark:hover:to-cyan-950/30 transition-all group"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+                    data-testid="dropdown-therapy"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                      <Palette className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold">🎨 Attending Therapy Sessions</div>
+                      <div className="text-xs text-muted-foreground">Join our art therapy programs</div>
+                    </div>
+                  </DropdownMenuItem>
+                  
+                  <DropdownMenuItem 
+                    className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-950/30 dark:hover:to-emerald-950/30 transition-all group"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+                    data-testid="dropdown-volunteer"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                      <HandHeart className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold">🙌 Becoming a Volunteer</div>
+                      <div className="text-xs text-muted-foreground">Give your time and skills</div>
+                    </div>
+                  </DropdownMenuItem>
+                  
+                  <DropdownMenuItem 
+                    className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-amber-950/30 dark:hover:to-orange-950/30 transition-all group"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+                    data-testid="dropdown-partnerships"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                      <Handshake className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold">🤝 Partnership Opportunities</div>
+                      <div className="text-xs text-muted-foreground">Collaborate with us</div>
+                    </div>
+                  </DropdownMenuItem>
+                  
+                  <DropdownMenuItem 
+                    className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 dark:hover:from-violet-950/30 dark:hover:to-purple-950/30 transition-all group"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+                    data-testid="dropdown-peer-counsellor"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold">👥 Become a Peer Counsellor</div>
+                      <div className="text-xs text-muted-foreground">Train to support others</div>
+                    </div>
+                  </DropdownMenuItem>
+                  
+                  <DropdownMenuSeparator />
+                  
+                  <DropdownMenuItem 
+                    className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-muted/50 transition-all group"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+                    data-testid="dropdown-general-inquiry"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-400 to-slate-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                      <MessageCircle className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold">💬 General Inquiry</div>
+                      <div className="text-xs text-muted-foreground">Have questions? Ask us anything</div>
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </motion.div>
         </div>
