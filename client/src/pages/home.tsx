@@ -560,48 +560,85 @@ export default function Home() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white/80 dark:bg-card/80 backdrop-blur-md rounded-3xl p-8 border-2 border-amber-200 dark:border-amber-800/50 shadow-xl"
+              className="space-y-6"
             >
-              <div className="text-center mb-6">
+              <div className="text-center mb-4">
                 <span className="text-4xl">📍</span>
-                <h3 className="text-2xl font-bold mt-2 font-serif">Suggested Venue</h3>
-              </div>
-              
-              <div className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 rounded-2xl p-6 mb-6">
-                <h4 className="text-xl font-bold text-amber-800 dark:text-amber-300 mb-2">Karura Forest</h4>
-                <p className="text-amber-700 dark:text-amber-400 font-medium mb-1">Nairobi, Kenya</p>
-                <p className="text-sm text-muted-foreground">1,000+ hectares of pristine urban forest</p>
-              </div>
-              
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">🌳</span>
-                  <span>Natural healing environment surrounded by indigenous trees</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">🏞️</span>
-                  <span>Peaceful waterfalls and walking trails for mindfulness</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">🎭</span>
-                  <span>Outdoor amphitheater spaces for performances</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">🚗</span>
-                  <span>Easy accessibility from KCA University (15-min drive)</span>
-                </div>
+                <h3 className="text-2xl font-bold mt-2 font-serif">Sacred Spaces for Healing</h3>
+                <p className="text-sm text-muted-foreground italic mt-2">"Where nature whispers, the soul listens"</p>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-amber-200 dark:border-amber-800/50 text-center">
-                <p className="text-xs text-muted-foreground mb-3">Alternative venues also being considered:</p>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {["Uhuru Gardens", "Nairobi Arboretum", "Paradise Lost"].map((venue) => (
-                    <span key={venue} className="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-medium">
-                      {venue}
-                    </span>
-                  ))}
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 dark:from-emerald-900/40 dark:via-green-900/30 dark:to-teal-900/40 rounded-3xl p-6 border-2 border-emerald-300/50 dark:border-emerald-700/50 shadow-lg"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-3xl">🌿</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-emerald-800 dark:text-emerald-300 font-serif">John Michuki Memorial Park</h4>
+                    <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-2">Nairobi • Free Entry</p>
+                    <p className="text-sm text-muted-foreground italic leading-relaxed">
+                      A sanctuary where the ancient Nairobi River breathes life into reclaimed wilderness. Here, wetlands mirror the sky, 
+                      indigenous trees stand as silent guardians, and every rustling leaf composes a symphony of restoration. 
+                      Art finds its muse in the dance of dragonflies and the poetry of flowing waters.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/30 dark:to-orange-900/40 rounded-3xl p-6 border-2 border-amber-300/50 dark:border-amber-700/50 shadow-lg"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-3xl">🌻</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-amber-800 dark:text-amber-300 font-serif">City Park</h4>
+                    <p className="text-amber-600 dark:text-amber-400 text-sm font-medium mb-2">Parklands, Nairobi • Free Entry</p>
+                    <p className="text-sm text-muted-foreground italic leading-relaxed">
+                      An urban eden where centuries-old fig trees stretch their cathedral branches toward heaven. 
+                      Playful Sykes monkeys leap through canopies as butterflies paint the air with living color. 
+                      Here, creativity blooms in dappled sunlight, and every breath draws in the perfume of wild orchids and possibility.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 dark:from-sky-900/40 dark:via-blue-900/30 dark:to-indigo-900/40 rounded-3xl p-6 border-2 border-sky-300/50 dark:border-sky-700/50 shadow-lg"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-3xl">🦋</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-sky-800 dark:text-sky-300 font-serif">Nairobi Arboretum</h4>
+                    <p className="text-sky-600 dark:text-sky-400 text-sm font-medium mb-2">State House Road • Minimal Fee (KES 65)</p>
+                    <p className="text-sm text-muted-foreground italic leading-relaxed">
+                      A living gallery of 350 tree species, where nature herself curates the most exquisite exhibition. 
+                      Winding paths lead through whispered secrets of acacia and eucalyptus, while bird songs compose 
+                      spontaneous concertos. Every meadow becomes a canvas, every grove a studio for the wandering artist's soul.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-br from-rose-100 via-pink-50 to-fuchsia-100 dark:from-rose-900/40 dark:via-pink-900/30 dark:to-fuchsia-900/40 rounded-3xl p-6 border-2 border-rose-300/50 dark:border-rose-700/50 shadow-lg"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="text-3xl">🌸</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-rose-800 dark:text-rose-300 font-serif">Uhuru Gardens</h4>
+                    <p className="text-rose-600 dark:text-rose-400 text-sm font-medium mb-2">Langata Road • Free Entry</p>
+                    <p className="text-sm text-muted-foreground italic leading-relaxed">
+                      Where Kenya's spirit of freedom blooms eternal in manicured splendor. Historic grounds embrace 
+                      sprawling lawns kissed by morning dew, while towering palms sway in gentle tribute to dreams realized. 
+                      A place where national pride and personal healing intertwine like vines seeking the sun.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
 
