@@ -560,85 +560,136 @@ export default function Home() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-4"
             >
-              <div className="text-center mb-4">
+              <div className="text-center mb-6">
                 <span className="text-4xl">📍</span>
                 <h3 className="text-2xl font-bold mt-2 font-serif">Sacred Spaces for Healing</h3>
                 <p className="text-sm text-muted-foreground italic mt-2">"Where nature whispers, the soul listens"</p>
               </div>
 
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100 dark:from-emerald-900/40 dark:via-green-900/30 dark:to-teal-900/40 rounded-3xl p-6 border-2 border-emerald-300/50 dark:border-emerald-700/50 shadow-lg"
-              >
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl">🌿</span>
-                  <div>
-                    <h4 className="text-xl font-bold text-emerald-800 dark:text-emerald-300 font-serif">John Michuki Memorial Park</h4>
-                    <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-2">Nairobi • Free Entry</p>
-                    <p className="text-sm text-muted-foreground italic leading-relaxed">
-                      A sanctuary where the ancient Nairobi River breathes life into reclaimed wilderness. Here, wetlands mirror the sky, 
-                      indigenous trees stand as silent guardians, and every rustling leaf composes a symphony of restoration. 
-                      Art finds its muse in the dance of dragonflies and the poetry of flowing waters.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/30 dark:to-orange-900/40 rounded-3xl p-6 border-2 border-amber-300/50 dark:border-amber-700/50 shadow-lg"
-              >
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl">🌻</span>
-                  <div>
-                    <h4 className="text-xl font-bold text-amber-800 dark:text-amber-300 font-serif">City Park</h4>
-                    <p className="text-amber-600 dark:text-amber-400 text-sm font-medium mb-2">Parklands, Nairobi • Free Entry</p>
-                    <p className="text-sm text-muted-foreground italic leading-relaxed">
-                      An urban eden where centuries-old fig trees stretch their cathedral branches toward heaven. 
-                      Playful Sykes monkeys leap through canopies as butterflies paint the air with living color. 
-                      Here, creativity blooms in dappled sunlight, and every breath draws in the perfume of wild orchids and possibility.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 dark:from-sky-900/40 dark:via-blue-900/30 dark:to-indigo-900/40 rounded-3xl p-6 border-2 border-sky-300/50 dark:border-sky-700/50 shadow-lg"
-              >
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl">🦋</span>
-                  <div>
-                    <h4 className="text-xl font-bold text-sky-800 dark:text-sky-300 font-serif">Nairobi Arboretum</h4>
-                    <p className="text-sky-600 dark:text-sky-400 text-sm font-medium mb-2">State House Road • Minimal Fee (KES 65)</p>
-                    <p className="text-sm text-muted-foreground italic leading-relaxed">
-                      A living gallery of 350 tree species, where nature herself curates the most exquisite exhibition. 
-                      Winding paths lead through whispered secrets of acacia and eucalyptus, while bird songs compose 
-                      spontaneous concertos. Every meadow becomes a canvas, every grove a studio for the wandering artist's soul.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="bg-gradient-to-br from-rose-100 via-pink-50 to-fuchsia-100 dark:from-rose-900/40 dark:via-pink-900/30 dark:to-fuchsia-900/40 rounded-3xl p-6 border-2 border-rose-300/50 dark:border-rose-700/50 shadow-lg"
-              >
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl">🌸</span>
-                  <div>
-                    <h4 className="text-xl font-bold text-rose-800 dark:text-rose-300 font-serif">Uhuru Gardens</h4>
-                    <p className="text-rose-600 dark:text-rose-400 text-sm font-medium mb-2">Langata Road • Free Entry</p>
-                    <p className="text-sm text-muted-foreground italic leading-relaxed">
-                      Where Kenya's spirit of freedom blooms eternal in manicured splendor. Historic grounds embrace 
-                      sprawling lawns kissed by morning dew, while towering palms sway in gentle tribute to dreams realized. 
-                      A place where national pride and personal healing intertwine like vines seeking the sun.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+              <div className="max-h-[600px] overflow-y-auto pr-2 space-y-4 scrollbar-thin">
+                {[
+                  { emoji: "🌿", name: "John Michuki Memorial Park", county: "Nairobi", color: "emerald", desc: "A sanctuary where the ancient Nairobi River breathes life into reclaimed wilderness. Wetlands mirror the sky as indigenous trees stand sentinel, composing symphonies of restoration with every rustling leaf." },
+                  { emoji: "🌻", name: "City Park", county: "Nairobi", color: "amber", desc: "An urban eden where centuries-old fig trees stretch cathedral branches toward heaven. Sykes monkeys dance through canopies as butterflies paint the air with living color and wild possibility." },
+                  { emoji: "🦋", name: "Nairobi Arboretum", county: "Nairobi", color: "sky", desc: "A living gallery of 350 tree species where nature curates exquisite exhibitions. Winding paths whisper secrets of acacia while bird songs compose spontaneous concertos for wandering souls." },
+                  { emoji: "🌸", name: "Uhuru Gardens", county: "Nairobi", color: "rose", desc: "Where Kenya's spirit of freedom blooms eternal. Historic grounds embrace sprawling lawns kissed by morning dew, towering palms swaying in tribute to dreams realized." },
+                  { emoji: "🏔️", name: "Hell's Gate National Park", county: "Nakuru", color: "orange", desc: "Towering cliffs rise like ancient sentinels, carved by time's patient hand. Geothermal steam dances from the earth's heart while eagles soar above gorges that echo with primal beauty." },
+                  { emoji: "🦩", name: "Lake Nakuru National Park", county: "Nakuru", color: "pink", desc: "A shimmering alkaline mirror where flamingos paint the shores in living coral. Euphorbia forests stand watch as rhinos graze beneath acacia canopies in this sanctuary of pink-tinged dreams." },
+                  { emoji: "🌊", name: "Lake Naivasha", county: "Nakuru", color: "blue", desc: "Fresh waters cradle floating islands of papyrus where hippos wade through liquid silver at dawn. Fish eagles cry their ancient songs as the Great Rift Valley embraces this oasis of tranquility." },
+                  { emoji: "🌺", name: "Crater Lake Sanctuary", county: "Nakuru", color: "teal", desc: "A hidden gem nestled in volcanic embrace, where emerald waters hold secrets of geological ages. Walking trails wind through fever tree forests alive with colobus monkey calls." },
+                  { emoji: "🐘", name: "Amboseli National Park", county: "Kajiado", color: "slate", desc: "Where elephant matriarchs lead families across sun-baked plains beneath Kilimanjaro's eternal snows. Dust devils dance like spirits while swamps pulse with life at the mountain's feet." },
+                  { emoji: "🦁", name: "Maasai Mara National Reserve", county: "Narok", color: "yellow", desc: "The greatest wildlife theater on Earth, where the great migration writes poetry in hoofbeats across endless savanna. Lions reign over golden grasslands as the circle of life unfolds in magnificent drama." },
+                  { emoji: "🌅", name: "Mara River Crossings", county: "Narok", color: "red", desc: "Sacred waters where courage meets destiny. Wildebeest gather on trembling banks before plunging into crocodile-patrolled currents—a primal spectacle of survival and determination." },
+                  { emoji: "🦒", name: "Nairobi National Park", county: "Nairobi", color: "green", desc: "Where wilderness meets skyline in harmonious defiance. Giraffes browse acacia against a backdrop of glass towers—proof that nature and humanity can share the same horizon." },
+                  { emoji: "🐆", name: "Samburu National Reserve", county: "Samburu", color: "copper", desc: "Rugged wilderness where the Ewaso Ng'iro River carves life through semi-arid splendor. Rare northern species roam under doum palms as Samburu warriors guard ancestral lands." },
+                  { emoji: "🏝️", name: "Diani Beach", county: "Kwale", color: "cyan", desc: "Powder-white sands kiss turquoise waters in eternal embrace. Coral reefs shimmer beneath waves while palm groves whisper ancient Swahili secrets to those who pause to listen." },
+                  { emoji: "🌴", name: "Watamu Marine Park", county: "Kilifi", color: "aqua", desc: "An underwater cathedral where coral gardens bloom in technicolor splendor. Sea turtles glide through crystalline depths as the Indian Ocean reveals its most precious treasures." },
+                  { emoji: "🏰", name: "Fort Jesus", county: "Mombasa", color: "terracotta", desc: "Portuguese stone walls hold centuries of coastal saga. Ocean breezes carry whispers of sultans and sailors through corridors where African, Arab, and European histories intertwine." },
+                  { emoji: "🌙", name: "Lamu Old Town", county: "Lamu", color: "sand", desc: "A UNESCO treasure where time flows like dhow sails on monsoon winds. Coral stone architecture and carved doorways frame streets unchanged for centuries, breathing Swahili soul." },
+                  { emoji: "⛵", name: "Shela Beach", county: "Lamu", color: "ivory", desc: "Twelve kilometers of pristine solitude where dhows rest on golden sands. The call to prayer mingles with wave songs in this timeless archipelago haven." },
+                  { emoji: "🗻", name: "Mount Kenya National Park", county: "Nyeri", color: "ice", desc: "Africa's second-highest peak pierces the heavens with glacial majesty. Afro-alpine moorlands bloom with giant lobelias while crystal streams cascade through bamboo forests." },
+                  { emoji: "🌲", name: "Aberdare National Park", county: "Nyandarua", color: "forest", desc: "Mist-shrouded highlands where waterfalls thunder into ravines draped in ancient forest. Elephants traverse mountain paths while black leopards prowl through bamboo shadows." },
+                  { emoji: "🦏", name: "Ol Pejeta Conservancy", county: "Laikipia", color: "olive", desc: "Where conservation writes its boldest chapters. The last northern white rhinos graze these plains as chimpanzees find sanctuary and community conservation proves its power." },
+                  { emoji: "🌾", name: "Lewa Wildlife Conservancy", county: "Meru", color: "wheat", desc: "A pioneering sanctuary where community and wildlife thrive in symbiotic harmony. Grevy's zebras roam freely as the Lewa Marathon brings global attention to conservation's noble cause." },
+                  { emoji: "🏜️", name: "Chalbi Desert", county: "Marsabit", color: "dust", desc: "An otherworldly expanse where salt flats shimmer like mirrors to infinity. Camels traverse ancient trade routes as Gabbra nomads navigate this stark, beautiful wilderness." },
+                  { emoji: "🌋", name: "Mount Marsabit", county: "Marsabit", color: "volcanic", desc: "A forested oasis rising from desert sands, crowned with crater lakes of impossible blue. Elephants with the longest tusks in Kenya roam these misty slopes." },
+                  { emoji: "💎", name: "Lake Turkana", county: "Turkana", color: "jade", desc: "The Jade Sea—world's largest permanent desert lake, cradling humanity's oldest fossils. Volcanic islands dot waters where Nile crocodiles and flamingos share shores." },
+                  { emoji: "🌊", name: "Central Island National Park", county: "Turkana", color: "obsidian", desc: "Three crater lakes glow like jewels in volcanic stone. Crocodiles nest on shores unchanged since prehistoric times—a living time capsule of Earth's raw power." },
+                  { emoji: "🦅", name: "Kakamega Forest", county: "Kakamega", color: "moss", desc: "Kenya's last remnant of ancient Guineo-Congolian rainforest. 400 butterfly species dance through canopy gaps while rare birds perform dawn choruses in primordial green." },
+                  { emoji: "🐟", name: "Lake Victoria", county: "Kisumu", color: "sapphire", desc: "Africa's greatest lake, source of the eternal Nile. Fishing dhows dot the horizon as hippos bask in papyrus-fringed bays and cichlids paint the shallows." },
+                  { emoji: "🌿", name: "Ruma National Park", county: "Homa Bay", color: "sage", desc: "Last stronghold of the roan antelope in Kenya. Oribi bound through tall grasslands while the rare Jackson's hartebeest grazes beneath solitary acacias." },
+                  { emoji: "🏞️", name: "Menengai Crater", county: "Nakuru", color: "ash", desc: "One of Earth's largest calderas, where geothermal steam rises like prayers from volcanic depths. The Maasai call it 'Place of Corpses'—hauntingly beautiful and spiritually charged." },
+                  { emoji: "🌈", name: "Thomson's Falls", county: "Nyandarua", color: "mist", desc: "A 74-meter cascade plunging into rainbow-kissed mist. The Ewaso Narok River celebrates gravity in spectacular fashion, carving beauty from ancient volcanic rock." },
+                  { emoji: "🦬", name: "Meru National Park", county: "Meru", color: "bronze", desc: "Where Elsa the lioness learned to live free. Palm-dotted savannas and clear streams create paradise, while lesser kudu and reticulated giraffe roam Adamson's beloved wilderness." },
+                  { emoji: "🌵", name: "Shaba National Reserve", county: "Isiolo", color: "sienna", desc: "Rugged volcanic landscapes where the Ewaso Ng'iro River is lifeline to all. Gerenuk stand tall on hind legs while Beisa oryx navigate this semi-arid wonderland." },
+                  { emoji: "🐊", name: "Tana River Primate Reserve", county: "Tana River", color: "riverine", desc: "Ribbon of green through arid lands, home to endangered red colobus and crested mangabey. Gallery forests line the sacred Tana as it journeys to the sea." },
+                  { emoji: "🌙", name: "Kisite-Mpunguti Marine Park", county: "Kwale", color: "lagoon", desc: "Dolphin pods dance through protected waters as coral gardens teem with tropical splendor. Snorkelers swim with sea turtles in this underwater paradise." },
+                  { emoji: "🦜", name: "Arabuko-Sokoke Forest", county: "Kilifi", color: "canopy", desc: "East Africa's largest coastal forest, sanctuary to golden-rumped elephant shrews and Clarke's weavers. Ancient Brachystegia trees shelter creatures found nowhere else on Earth." },
+                  { emoji: "🏔️", name: "Mount Elgon National Park", county: "Bungoma", color: "granite", desc: "World's largest caldera crowns this ancient volcano. Salt-mining elephants venture into caves by torchlight while endemic flora clings to afro-alpine peaks." },
+                  { emoji: "🌻", name: "Saiwa Swamp National Park", county: "Trans-Nzoia", color: "marsh", desc: "Kenya's smallest park holds its rarest treasure—the sitatunga antelope. Boardwalks wind through papyrus as de Brazza's monkeys watch from riverine canopy." },
+                  { emoji: "⛰️", name: "Cherangani Hills", county: "Elgeyo-Marakwet", color: "highland", desc: "Rolling grasslands and indigenous forest crown these ancient hills. Kalenjin runners train on legendary slopes where mist and tradition interweave." },
+                  { emoji: "🦌", name: "Rimoi National Reserve", county: "Elgeyo-Marakwet", color: "escarpment", desc: "Lesser known gem along the Kerio Valley escarpment. Greater kudu browse steep slopes while views stretch across the Great Rift's dramatic canvas." },
+                  { emoji: "🌊", name: "Malindi Marine National Park", county: "Kilifi", color: "coral", desc: "Kenya's first marine protected area, where reef fish paint living murals. Glass-bottom boats reveal underwater galaxies of color and life." },
+                  { emoji: "🦢", name: "Lake Bogoria", county: "Baringo", color: "flamingo", desc: "Geysers erupt beside flamingo-lined shores in this soda lake sanctuary. Hot springs heal while millions of lesser flamingos create living pink carpets." },
+                  { emoji: "🐦", name: "Lake Baringo", county: "Baringo", color: "freshwater", desc: "Freshwater haven where 470 bird species find paradise. Crocodiles bask on islands as Njemps fishermen cast nets using ancient methods." }
+                ].map((venue, i) => {
+                  const colorMap: Record<string, string> = {
+                    emerald: "from-emerald-100 via-green-50 to-teal-100 dark:from-emerald-900/40 dark:via-green-900/30 dark:to-teal-900/40 border-emerald-300/50 dark:border-emerald-700/50 text-emerald-800 dark:text-emerald-300",
+                    amber: "from-amber-100 via-yellow-50 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/30 dark:to-orange-900/40 border-amber-300/50 dark:border-amber-700/50 text-amber-800 dark:text-amber-300",
+                    sky: "from-sky-100 via-blue-50 to-indigo-100 dark:from-sky-900/40 dark:via-blue-900/30 dark:to-indigo-900/40 border-sky-300/50 dark:border-sky-700/50 text-sky-800 dark:text-sky-300",
+                    rose: "from-rose-100 via-pink-50 to-fuchsia-100 dark:from-rose-900/40 dark:via-pink-900/30 dark:to-fuchsia-900/40 border-rose-300/50 dark:border-rose-700/50 text-rose-800 dark:text-rose-300",
+                    orange: "from-orange-100 via-amber-50 to-red-100 dark:from-orange-900/40 dark:via-amber-900/30 dark:to-red-900/40 border-orange-300/50 dark:border-orange-700/50 text-orange-800 dark:text-orange-300",
+                    pink: "from-pink-100 via-rose-50 to-red-100 dark:from-pink-900/40 dark:via-rose-900/30 dark:to-red-900/40 border-pink-300/50 dark:border-pink-700/50 text-pink-800 dark:text-pink-300",
+                    blue: "from-blue-100 via-sky-50 to-cyan-100 dark:from-blue-900/40 dark:via-sky-900/30 dark:to-cyan-900/40 border-blue-300/50 dark:border-blue-700/50 text-blue-800 dark:text-blue-300",
+                    teal: "from-teal-100 via-cyan-50 to-emerald-100 dark:from-teal-900/40 dark:via-cyan-900/30 dark:to-emerald-900/40 border-teal-300/50 dark:border-teal-700/50 text-teal-800 dark:text-teal-300",
+                    slate: "from-slate-100 via-gray-50 to-zinc-100 dark:from-slate-900/40 dark:via-gray-900/30 dark:to-zinc-900/40 border-slate-300/50 dark:border-slate-700/50 text-slate-800 dark:text-slate-300",
+                    yellow: "from-yellow-100 via-amber-50 to-orange-100 dark:from-yellow-900/40 dark:via-amber-900/30 dark:to-orange-900/40 border-yellow-300/50 dark:border-yellow-700/50 text-yellow-800 dark:text-yellow-300",
+                    red: "from-red-100 via-rose-50 to-orange-100 dark:from-red-900/40 dark:via-rose-900/30 dark:to-orange-900/40 border-red-300/50 dark:border-red-700/50 text-red-800 dark:text-red-300",
+                    green: "from-green-100 via-emerald-50 to-teal-100 dark:from-green-900/40 dark:via-emerald-900/30 dark:to-teal-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
+                    copper: "from-orange-100 via-amber-50 to-yellow-100 dark:from-orange-900/40 dark:via-amber-900/30 dark:to-yellow-900/40 border-orange-300/50 dark:border-orange-700/50 text-orange-800 dark:text-orange-300",
+                    cyan: "from-cyan-100 via-sky-50 to-blue-100 dark:from-cyan-900/40 dark:via-sky-900/30 dark:to-blue-900/40 border-cyan-300/50 dark:border-cyan-700/50 text-cyan-800 dark:text-cyan-300",
+                    aqua: "from-cyan-100 via-teal-50 to-emerald-100 dark:from-cyan-900/40 dark:via-teal-900/30 dark:to-emerald-900/40 border-cyan-300/50 dark:border-cyan-700/50 text-cyan-800 dark:text-cyan-300",
+                    terracotta: "from-orange-100 via-red-50 to-amber-100 dark:from-orange-900/40 dark:via-red-900/30 dark:to-amber-900/40 border-orange-300/50 dark:border-orange-700/50 text-orange-800 dark:text-orange-300",
+                    sand: "from-amber-100 via-yellow-50 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/30 dark:to-orange-900/40 border-amber-300/50 dark:border-amber-700/50 text-amber-800 dark:text-amber-300",
+                    ivory: "from-amber-50 via-yellow-50 to-orange-50 dark:from-amber-900/30 dark:via-yellow-900/20 dark:to-orange-900/30 border-amber-200/50 dark:border-amber-800/50 text-amber-700 dark:text-amber-400",
+                    ice: "from-blue-100 via-sky-50 to-indigo-100 dark:from-blue-900/40 dark:via-sky-900/30 dark:to-indigo-900/40 border-blue-300/50 dark:border-blue-700/50 text-blue-800 dark:text-blue-300",
+                    forest: "from-green-100 via-emerald-50 to-teal-100 dark:from-green-900/40 dark:via-emerald-900/30 dark:to-teal-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
+                    olive: "from-lime-100 via-green-50 to-emerald-100 dark:from-lime-900/40 dark:via-green-900/30 dark:to-emerald-900/40 border-lime-300/50 dark:border-lime-700/50 text-lime-800 dark:text-lime-300",
+                    wheat: "from-amber-100 via-yellow-50 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/30 dark:to-orange-900/40 border-amber-300/50 dark:border-amber-700/50 text-amber-800 dark:text-amber-300",
+                    dust: "from-orange-100 via-amber-50 to-yellow-100 dark:from-orange-900/40 dark:via-amber-900/30 dark:to-yellow-900/40 border-orange-300/50 dark:border-orange-700/50 text-orange-800 dark:text-orange-300",
+                    volcanic: "from-slate-100 via-gray-50 to-zinc-100 dark:from-slate-900/40 dark:via-gray-900/30 dark:to-zinc-900/40 border-slate-300/50 dark:border-slate-700/50 text-slate-800 dark:text-slate-300",
+                    jade: "from-emerald-100 via-teal-50 to-cyan-100 dark:from-emerald-900/40 dark:via-teal-900/30 dark:to-cyan-900/40 border-emerald-300/50 dark:border-emerald-700/50 text-emerald-800 dark:text-emerald-300",
+                    obsidian: "from-slate-100 via-gray-50 to-zinc-100 dark:from-slate-900/40 dark:via-gray-900/30 dark:to-zinc-900/40 border-slate-300/50 dark:border-slate-700/50 text-slate-800 dark:text-slate-300",
+                    moss: "from-green-100 via-emerald-50 to-lime-100 dark:from-green-900/40 dark:via-emerald-900/30 dark:to-lime-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
+                    sapphire: "from-blue-100 via-indigo-50 to-violet-100 dark:from-blue-900/40 dark:via-indigo-900/30 dark:to-violet-900/40 border-blue-300/50 dark:border-blue-700/50 text-blue-800 dark:text-blue-300",
+                    sage: "from-green-100 via-emerald-50 to-teal-100 dark:from-green-900/40 dark:via-emerald-900/30 dark:to-teal-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
+                    ash: "from-gray-100 via-slate-50 to-zinc-100 dark:from-gray-900/40 dark:via-slate-900/30 dark:to-zinc-900/40 border-gray-300/50 dark:border-gray-700/50 text-gray-800 dark:text-gray-300",
+                    mist: "from-slate-100 via-gray-50 to-blue-100 dark:from-slate-900/40 dark:via-gray-900/30 dark:to-blue-900/40 border-slate-300/50 dark:border-slate-700/50 text-slate-800 dark:text-slate-300",
+                    bronze: "from-amber-100 via-orange-50 to-yellow-100 dark:from-amber-900/40 dark:via-orange-900/30 dark:to-yellow-900/40 border-amber-300/50 dark:border-amber-700/50 text-amber-800 dark:text-amber-300",
+                    sienna: "from-orange-100 via-amber-50 to-red-100 dark:from-orange-900/40 dark:via-amber-900/30 dark:to-red-900/40 border-orange-300/50 dark:border-orange-700/50 text-orange-800 dark:text-orange-300",
+                    riverine: "from-green-100 via-teal-50 to-cyan-100 dark:from-green-900/40 dark:via-teal-900/30 dark:to-cyan-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
+                    lagoon: "from-cyan-100 via-blue-50 to-teal-100 dark:from-cyan-900/40 dark:via-blue-900/30 dark:to-teal-900/40 border-cyan-300/50 dark:border-cyan-700/50 text-cyan-800 dark:text-cyan-300",
+                    canopy: "from-green-100 via-emerald-50 to-lime-100 dark:from-green-900/40 dark:via-emerald-900/30 dark:to-lime-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
+                    granite: "from-slate-100 via-gray-50 to-stone-100 dark:from-slate-900/40 dark:via-gray-900/30 dark:to-stone-900/40 border-slate-300/50 dark:border-slate-700/50 text-slate-800 dark:text-slate-300",
+                    marsh: "from-green-100 via-teal-50 to-emerald-100 dark:from-green-900/40 dark:via-teal-900/30 dark:to-emerald-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
+                    highland: "from-green-100 via-emerald-50 to-teal-100 dark:from-green-900/40 dark:via-emerald-900/30 dark:to-teal-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
+                    escarpment: "from-amber-100 via-orange-50 to-red-100 dark:from-amber-900/40 dark:via-orange-900/30 dark:to-red-900/40 border-amber-300/50 dark:border-amber-700/50 text-amber-800 dark:text-amber-300",
+                    coral: "from-pink-100 via-rose-50 to-red-100 dark:from-pink-900/40 dark:via-rose-900/30 dark:to-red-900/40 border-pink-300/50 dark:border-pink-700/50 text-pink-800 dark:text-pink-300",
+                    flamingo: "from-pink-100 via-rose-50 to-fuchsia-100 dark:from-pink-900/40 dark:via-rose-900/30 dark:to-fuchsia-900/40 border-pink-300/50 dark:border-pink-700/50 text-pink-800 dark:text-pink-300",
+                    freshwater: "from-blue-100 via-cyan-50 to-teal-100 dark:from-blue-900/40 dark:via-cyan-900/30 dark:to-teal-900/40 border-blue-300/50 dark:border-blue-700/50 text-blue-800 dark:text-blue-300"
+                  };
+                  const colors = colorMap[venue.color] || colorMap.emerald;
+                  const textColor = colors.split(" ").find(c => c.startsWith("text-")) || "text-emerald-800";
+                  
+                  return (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.02 }}
+                      whileHover={{ scale: 1.01, x: 5 }}
+                      className={`bg-gradient-to-br ${colors} rounded-2xl p-4 border-2 shadow-md cursor-pointer transition-all`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="text-2xl">{venue.emoji}</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <h4 className={`text-lg font-bold font-serif ${textColor}`}>{venue.name}</h4>
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-white/50 dark:bg-black/20 text-muted-foreground font-medium shrink-0">
+                              {venue.county} County
+                            </span>
+                          </div>
+                          <p className="text-sm text-muted-foreground italic leading-relaxed mt-1">
+                            {venue.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </motion.div>
           </div>
 
