@@ -7,7 +7,8 @@ import {
   Palette, Activity, Gem, Hammer, Flame, SprayCan, 
   Coffee, Scissors, Layers, Box, Droplets, PenTool, 
   Gift, Monitor, BookOpen, Users, HeartHandshake, ArrowRight,
-  Heart, HandHeart, Handshake, MessageCircle, Sparkles, ChevronDown
+  Heart, HandHeart, Handshake, MessageCircle, Sparkles, ChevronDown,
+  CreditCard, Smartphone, Globe, Landmark
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -75,11 +76,11 @@ import artwork4 from "@assets/1000023025_1767652187224.jpg";
 import artwork5 from "@assets/1000023044_1767652198882.jpg";
 
 const galleryImages = [
-  { src: artwork1, alt: "Christ Mission" },
-  { src: artwork2, alt: "Starry Night" },
-  { src: artwork3, alt: "Portrait Study" },
-  { src: artwork4, alt: "Bird in Water" },
-  { src: artwork5, alt: "Tropical Bird" },
+  { src: artwork1, alt: "Outdoor Session - Christ Mission" },
+  { src: artwork2, alt: "Art Director's Workshop - Starry Night" },
+  { src: artwork3, alt: "Creative Healing - Portrait Study" },
+  { src: artwork4, alt: "Outdoor Therapy - Bird in Water" },
+  { src: artwork5, alt: "Nature Inspiration - Tropical Bird" },
 ];
 
 const team = [
@@ -188,10 +189,9 @@ export default function Home() {
                   <DropdownMenuItem 
                     className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-950/30 dark:hover:to-purple-950/30 transition-all group"
                     onClick={() => {
-                      const contactSection = document.getElementById('contact');
-                      if (contactSection) {
-                        contactSection.scrollIntoView({behavior: 'smooth'});
-                        // Optionally open a payment modal here if implemented
+                      const donationSection = document.getElementById('donations-relay');
+                      if (donationSection) {
+                        donationSection.scrollIntoView({behavior: 'smooth'});
                       }
                     }}
                     data-testid="dropdown-donations"
@@ -715,6 +715,81 @@ export default function Home() {
               Register Interest for Next Festival
             </Button>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Donations Relay Section */}
+      <section id="donations-relay" className="py-24 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 font-serif">Support Our Mission</h2>
+            <p className="text-xl text-muted-foreground">Your contribution helps us bring art therapy to those who need it most.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "M-Pesa",
+                icon: Smartphone,
+                color: "green",
+                details: [
+                  { label: "Paybill", value: "222111" },
+                  { label: "Account", value: "2920676" }
+                ],
+                desc: "Quick mobile money transfer"
+              },
+              {
+                title: "PayPal",
+                icon: Globe,
+                color: "blue",
+                details: [
+                  { label: "Email", value: "cfidel209@gmail.com" }
+                ],
+                desc: "International & online payments"
+              },
+              {
+                title: "Bank Transfer",
+                icon: Landmark,
+                color: "slate",
+                details: [
+                  { label: "Acc No", value: "5220570000524046" }
+                ],
+                desc: "Direct bank deposit/transfer"
+              },
+              {
+                title: "Card Payments",
+                icon: CreditCard,
+                color: "rose",
+                details: [
+                  { label: "Visa / Mastercard", value: "Accepted" }
+                ],
+                desc: "Secure credit & debit cards"
+              }
+            ].map((method, i) => (
+              <motion.div
+                key={method.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-card p-6 rounded-3xl border shadow-sm hover:shadow-md transition-all group"
+              >
+                <div className={`w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <method.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">{method.title}</h3>
+                <div className="space-y-3 mb-6">
+                  {method.details.map((detail, idx) => (
+                    <div key={idx} className="flex flex-col">
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider font-bold">{detail.label}</span>
+                      <span className="text-lg font-mono font-medium text-primary break-all">{detail.value}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground">{method.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
