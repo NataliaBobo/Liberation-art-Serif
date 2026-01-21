@@ -479,7 +479,8 @@ export default function Home() {
           </div>
 
           <div className="max-w-6xl mx-auto">
-            <h3 className="text-3xl font-bold mb-12 text-center font-serif">Art Director's Gallery</h3>
+            <h2 className="text-4xl font-bold mb-4 text-center">Gallery</h2>
+            <h3 className="text-xl text-primary font-serif italic mb-12 text-center">Outdoor Sessions & Creative Expressions</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {galleryImages.map((image, idx) => (
                 <motion.div 
@@ -487,16 +488,21 @@ export default function Home() {
                   whileHover={{ scale: 1.03, y: -5 }}
                   className="rounded-2xl overflow-hidden border shadow-lg bg-card h-full flex flex-col"
                 >
-                  <div className="aspect-[3/4] overflow-hidden bg-muted">
+                  <div className="aspect-[3/4] overflow-hidden bg-muted relative group">
                     <img 
                       src={image.src} 
                       alt={image.alt} 
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <p className="text-white text-lg font-serif italic text-center px-4">
+                        {image.alt}
+                      </p>
+                    </div>
                   </div>
                   <div className="p-4 bg-card mt-auto border-t">
                     <p className="text-sm text-muted-foreground italic text-center font-medium">
-                      {image.alt} — Fidel Castro
+                      Fidel Castro — Art Director Session
                     </p>
                   </div>
                 </motion.div>
