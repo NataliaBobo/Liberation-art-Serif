@@ -187,7 +187,13 @@ export default function Home() {
                   
                   <DropdownMenuItem 
                     className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-950/30 dark:hover:to-purple-950/30 transition-all group"
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+                    onClick={() => {
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({behavior: 'smooth'});
+                        // Optionally open a payment modal here if implemented
+                      }
+                    }}
                     data-testid="dropdown-donations"
                   >
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
@@ -195,7 +201,7 @@ export default function Home() {
                     </div>
                     <div>
                       <div className="font-semibold">💝 Donations</div>
-                      <div className="text-xs text-muted-foreground">Support our mission financially</div>
+                      <div className="text-xs text-muted-foreground">Support via M-Pesa, PayPal, Visa/Mastercard</div>
                     </div>
                   </DropdownMenuItem>
                   
