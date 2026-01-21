@@ -8,7 +8,7 @@ import {
   Coffee, Scissors, Layers, Box, Droplets, PenTool, 
   Gift, Monitor, BookOpen, Users, HeartHandshake, ArrowRight,
   Heart, HandHeart, Handshake, MessageCircle, Sparkles, ChevronDown,
-  CreditCard, Smartphone, Globe, Landmark
+  CreditCard, Smartphone, Globe, Landmark, Book
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -18,13 +18,105 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import heroImage from "@assets/generated_images/art_therapy_studio_inside_shipping_container.png";
+
+import artwork1 from "@assets/1000023038_1767651988912.jpg";
+import artwork2 from "@assets/1000023028_1767652187210.jpg";
+import artwork3 from "@assets/1000023027_1767652187224.jpg";
+import artwork4 from "@assets/1000023025_1767652187224.jpg";
+import artwork5 from "@assets/1000023044_1767652198882.jpg";
+
+const galleryImages = [
+  { src: artwork1, alt: "Outdoor Session - Christ Mission" },
+  { src: artwork2, alt: "Art Director's Workshop - Starry Night" },
+  { src: artwork3, alt: "Creative Healing - Portrait Study" },
+  { src: artwork4, alt: "Outdoor Therapy - Bird in Water" },
+  { src: artwork5, alt: "Nature Inspiration - Tropical Bird" },
+];
+
+function FlipBook() {
+  const [currentPage, setCurrentPage] = React.useState(0);
+
+  const nextPage = () => {
+    setCurrentPage((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  return (
+    <div className="relative w-full max-w-xl mx-auto aspect-[3/4] [perspective:1000px] group py-12">
+      <div className="absolute inset-0 bg-card rounded-r-3xl shadow-2xl border-y-4 border-r-4 border-primary/20 overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPage}
+            initial={{ rotateY: 90, opacity: 0 }}
+            animate={{ rotateY: 0, opacity: 1 }}
+            exit={{ rotateY: -90, opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="w-full h-full flex flex-col transform-gpu origin-left"
+          >
+            <div className="flex-1 overflow-hidden relative">
+              <img 
+                src={galleryImages[currentPage].src} 
+                alt={galleryImages[currentPage].alt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
+                <p className="text-white text-xl font-serif italic">
+                  {galleryImages[currentPage].alt}
+                </p>
+              </div>
+            </div>
+            <div className="p-6 bg-card border-t flex justify-between items-center">
+              <span className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+                Fidel Castro — Art Director Session
+              </span>
+              <span className="text-sm font-bold font-serif text-primary">
+                Page {currentPage + 1} / {galleryImages.length}
+              </span>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-primary/40 to-primary/10 rounded-l-md shadow-inner border-l-2 border-primary/30 z-20" />
+
+      <div className="absolute inset-y-0 -left-16 flex items-center">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={prevPage}
+          className="rounded-full bg-background/80 backdrop-blur-sm shadow-lg hover:scale-110 transition-transform"
+        >
+          <ArrowRight className="w-6 h-6 rotate-180" />
+        </Button>
+      </div>
+      <div className="absolute inset-y-0 -right-16 flex items-center">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={nextPage}
+          className="rounded-full bg-background/80 backdrop-blur-sm shadow-lg hover:scale-110 transition-transform"
+        >
+          <ArrowRight className="w-6 h-6" />
+        </Button>
+      </div>
+
+      <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-muted-foreground animate-pulse">
+        <Book className="w-4 h-4" />
+        <span className="text-sm font-medium italic">Click arrows to flip through the story</span>
+      </div>
+    </div>
+  );
+}
 
 const services = [
   { icon: Palette, title: "Visual Art Therapy", desc: "Express emotions through painting, drawing, and mixed media in guided sessions." },
@@ -67,20 +159,6 @@ const testimonials = [
     author: "Dr. Amina W.",
     role: "Mental Health Advocate"
   }
-];
-
-import artwork1 from "@assets/1000023038_1767651988912.jpg";
-import artwork2 from "@assets/1000023028_1767652187210.jpg";
-import artwork3 from "@assets/1000023027_1767652187224.jpg";
-import artwork4 from "@assets/1000023025_1767652187224.jpg";
-import artwork5 from "@assets/1000023044_1767652198882.jpg";
-
-const galleryImages = [
-  { src: artwork1, alt: "Outdoor Session - Christ Mission" },
-  { src: artwork2, alt: "Art Director's Workshop - Starry Night" },
-  { src: artwork3, alt: "Creative Healing - Portrait Study" },
-  { src: artwork4, alt: "Outdoor Therapy - Bird in Water" },
-  { src: artwork5, alt: "Nature Inspiration - Tropical Bird" },
 ];
 
 const team = [
@@ -481,33 +559,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold mb-4 text-center">Gallery</h2>
             <h3 className="text-xl text-primary font-serif italic mb-12 text-center">Outdoor Sessions & Creative Expressions</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {galleryImages.map((image, idx) => (
-                <motion.div 
-                  key={idx}
-                  whileHover={{ scale: 1.03, y: -5 }}
-                  className="rounded-2xl overflow-hidden border shadow-lg bg-card h-full flex flex-col"
-                >
-                  <div className="aspect-[3/4] overflow-hidden bg-muted relative group">
-                    <img 
-                      src={image.src} 
-                      alt={image.alt} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <p className="text-white text-lg font-serif italic text-center px-4">
-                        {image.alt}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="p-4 bg-card mt-auto border-t">
-                    <p className="text-sm text-muted-foreground italic text-center font-medium">
-                      Fidel Castro — Art Director Session
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <FlipBook />
           </div>
         </div>
       </section>
@@ -613,9 +665,9 @@ export default function Home() {
                   { emoji: "🌿", name: "Ruma National Park", county: "Homa Bay", color: "sage", desc: "Last stronghold of the roan antelope in Kenya. Oribi bound through tall grasslands while the rare Jackson's hartebeest grazes beneath solitary acacias." },
                   { emoji: "🏞️", name: "Menengai Crater", county: "Nakuru", color: "ash", desc: "One of Earth's largest calderas, where geothermal steam rises like prayers from volcanic depths. The Maasai call it 'Place of Corpses'—hauntingly beautiful and spiritually charged." },
                   { emoji: "🌈", name: "Thomson's Falls", county: "Nyandarua", color: "mist", desc: "A 74-meter cascade plunging into rainbow-kissed mist. The Ewaso Narok River celebrates gravity in spectacular fashion, carving beauty from ancient volcanic rock." },
+                  { emoji: "🦔", name: "Marsabit National Park", county: "Marsabit", color: "bronze", desc: "A cool, forested enclave rising from the surrounding desert. Thick mountain mist blankets ancient craters and the massive tusks of Ahmed the Elephant still haunt the memory of the trees." },
                   { emoji: "🦬", name: "Meru National Park", county: "Meru", color: "bronze", desc: "Where Elsa the lioness learned to live free. Palm-dotted savannas and clear streams create paradise, while lesser kudu and reticulated giraffe roam Adamson's beloved wilderness." },
                   { emoji: "🌵", name: "Shaba National Reserve", county: "Isiolo", color: "sienna", desc: "Rugged volcanic landscapes where the Ewaso Ng'iro River is lifeline to all. Gerenuk stand tall on hind legs while Beisa oryx navigate this semi-arid wonderland." },
-                  { emoji: "🐊", name: "Tana River Primate Reserve", county: "Tana River", color: "riverine", desc: "Ribbon of green through arid lands, home to endangered red colobus and crested mangabey. Gallery forests line the sacred Tana as it journeys to the sea." },
                   { emoji: "🌙", name: "Kisite-Mpunguti Marine Park", county: "Kwale", color: "lagoon", desc: "Dolphin pods dance through protected waters as coral gardens teem with tropical splendor. Snorkelers swim with sea turtles in this underwater paradise." },
                   { emoji: "🦜", name: "Arabuko-Sokoke Forest", county: "Kilifi", color: "canopy", desc: "East Africa's largest coastal forest, sanctuary to golden-rumped elephant shrews and Clarke's weavers. Ancient Brachystegia trees shelter creatures found nowhere else on Earth." },
                   { emoji: "🏔️", name: "Mount Elgon National Park", county: "Bungoma", color: "granite", desc: "World's largest caldera crowns this ancient volcano. Salt-mining elephants venture into caves by torchlight while endemic flora clings to afro-alpine peaks." },
@@ -632,7 +684,7 @@ export default function Home() {
                     sky: "from-sky-100 via-blue-50 to-indigo-100 dark:from-sky-900/40 dark:via-blue-900/30 dark:to-indigo-900/40 border-sky-300/50 dark:border-sky-700/50 text-sky-800 dark:text-sky-300",
                     rose: "from-rose-100 via-pink-50 to-fuchsia-100 dark:from-rose-900/40 dark:via-pink-900/30 dark:to-fuchsia-900/40 border-rose-300/50 dark:border-rose-700/50 text-rose-800 dark:text-rose-300",
                     orange: "from-orange-100 via-amber-50 to-red-100 dark:from-orange-900/40 dark:via-amber-900/30 dark:to-red-900/40 border-orange-300/50 dark:border-orange-700/50 text-orange-800 dark:text-orange-300",
-                    pink: "from-pink-100 via-rose-50 to-red-100 dark:from-pink-900/40 dark:via-rose-900/30 dark:to-red-900/40 border-pink-300/50 dark:border-pink-700/50 text-pink-800 dark:text-pink-300",
+                    pink: "from-pink-100 via-rose-50 to-red-100 dark:from-pink-900/40 dark:via-pink-900/30 dark:to-red-900/40 border-pink-300/50 dark:border-pink-700/50 text-pink-800 dark:text-pink-300",
                     blue: "from-blue-100 via-sky-50 to-cyan-100 dark:from-blue-900/40 dark:via-sky-900/30 dark:to-cyan-900/40 border-blue-300/50 dark:border-blue-700/50 text-blue-800 dark:text-blue-300",
                     teal: "from-teal-100 via-cyan-50 to-emerald-100 dark:from-teal-900/40 dark:via-cyan-900/30 dark:to-emerald-900/40 border-teal-300/50 dark:border-teal-700/50 text-teal-800 dark:text-teal-300",
                     slate: "from-slate-100 via-gray-50 to-zinc-100 dark:from-slate-900/40 dark:via-gray-900/30 dark:to-zinc-900/40 border-slate-300/50 dark:border-slate-700/50 text-slate-800 dark:text-slate-300",
@@ -668,7 +720,7 @@ export default function Home() {
                     highland: "from-green-100 via-emerald-50 to-teal-100 dark:from-green-900/40 dark:via-emerald-900/30 dark:to-teal-900/40 border-green-300/50 dark:border-green-700/50 text-green-800 dark:text-green-300",
                     escarpment: "from-amber-100 via-orange-50 to-red-100 dark:from-amber-900/40 dark:via-orange-900/30 dark:to-red-900/40 border-amber-300/50 dark:border-amber-700/50 text-amber-800 dark:text-amber-300",
                     coral: "from-pink-100 via-rose-50 to-red-100 dark:from-pink-900/40 dark:via-rose-900/30 dark:to-red-900/40 border-pink-300/50 dark:border-pink-700/50 text-pink-800 dark:text-pink-300",
-                    flamingo: "from-pink-100 via-rose-50 to-fuchsia-100 dark:from-pink-900/40 dark:via-rose-900/30 dark:to-fuchsia-900/40 border-pink-300/50 dark:border-pink-700/50 text-pink-800 dark:text-pink-300",
+                    flamingo: "from-pink-100 via-rose-50 to-fuchsia-100 dark:from-pink-900/40 dark:via-pink-900/30 dark:to-fuchsia-900/40 border-pink-300/50 dark:border-pink-700/50 text-pink-800 dark:text-pink-300",
                     freshwater: "from-blue-100 via-cyan-50 to-teal-100 dark:from-blue-900/40 dark:via-cyan-900/30 dark:to-teal-900/40 border-blue-300/50 dark:border-blue-700/50 text-blue-800 dark:text-blue-300"
                   };
                   const colors = colorMap[venue.color] || colorMap.emerald;
@@ -703,24 +755,18 @@ export default function Home() {
                 })}
               </div>
             </motion.div>
+            <div className="mt-12 flex justify-center">
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-lg"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+                data-testid="button-festival-interest"
+              >
+                <Sparkles className="w-5 h-5 mr-2" />
+                Register Interest for Next Festival
+              </Button>
+            </div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-lg"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
-              data-testid="button-festival-interest"
-            >
-              <Sparkles className="w-5 h-5 mr-2" />
-              Register Interest for Next Festival
-            </Button>
-          </motion.div>
         </div>
       </section>
 
