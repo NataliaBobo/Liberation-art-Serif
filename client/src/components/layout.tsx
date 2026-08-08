@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Menu, X, Paintbrush } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [, setLocation] = useLocation();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -16,20 +17,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   const navLinks = [
-    { href: "#mission", label: "Mission" },
-    { href: "#services", label: "Services" },
-    { href: "#impact", label: "Impact" },
-    { href: "#team", label: "Team" },
-    { href: "#contact", label: "Contact" },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/collections", label: "Collections" },
+    { href: "/services", label: "Services" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/bookings", label: "Bookings" },
+    { href: "/contact", label: "Contact" },
+    { href: "/admin", label: "Admin" },
   ];
-
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-foreground bg-background">
@@ -51,16 +47,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleScrollTo(e, link.href)}
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
+              <Link key={link.href} href={link.href} className="text-sm font-medium hover:text-primary transition-colors">
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <Button className="rounded-full px-6" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+            <Button className="rounded-full px-6" onClick={() => setLocation("/contact") }>
               Join Us
             </Button>
           </nav>
@@ -72,17 +63,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Menu className="w-6 h-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent>
+              <SheetContent>
               <nav className="flex flex-col gap-6 mt-10">
                 {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => handleScrollTo(e, link.href)}
-                    className="text-lg font-medium hover:text-primary transition-colors"
-                  >
+                  <Link key={link.href} href={link.href} className="text-lg font-medium hover:text-primary transition-colors">
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </SheetContent>
@@ -106,9 +92,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <h4 className="font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2 opacity-80">
-              <li><a href="#mission" className="hover:opacity-100">Our Mission</a></li>
-              <li><a href="#services" className="hover:opacity-100">Services</a></li>
-              <li><a href="#team" className="hover:opacity-100">Team</a></li>
+              <li><Link href="/about" className="hover:opacity-100">About</Link></li>
+              <li><Link href="/collections" className="hover:opacity-100">Collections</Link></li>
+              <li><Link href="/services" className="hover:opacity-100">Services</Link></li>
+              <li><Link href="/gallery" className="hover:opacity-100">Gallery</Link></li>
             </ul>
           </div>
           <div>

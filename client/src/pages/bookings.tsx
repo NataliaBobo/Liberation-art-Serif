@@ -11,6 +11,7 @@ interface Booking {
   serviceTitle: string;
   name: string;
   email: string;
+  phone?: string;
   date: string;
   time: string;
   notes?: string;
@@ -116,6 +117,15 @@ export default function Bookings() {
                                 <p className="font-medium">{booking.email}</p>
                               </div>
                             </div>
+                            {booking.phone && (
+                              <div className="flex items-start gap-3">
+                                <Clock className="w-5 h-5 text-primary mt-0.5" />
+                                <div>
+                                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Phone</p>
+                                  <p className="font-medium">{booking.phone}</p>
+                                </div>
+                              </div>
+                            )}
                           </div>
                           <div className="space-y-4">
                             <div className="flex items-start gap-3">
@@ -134,9 +144,8 @@ export default function Bookings() {
                             Booked on {new Date(booking.createdAt).toLocaleDateString()}
                           </span>
                           <Button 
-                            variant="destructive" 
-                            size="sm" 
                             variant="ghost"
+                            size="sm" 
                             className="text-destructive hover:bg-destructive/10 rounded-full"
                             onClick={() => deleteBooking(booking.id)}
                           >
