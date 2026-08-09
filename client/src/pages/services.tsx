@@ -146,7 +146,7 @@ export default function Services() {
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">
                 Discover our range of art-based therapeutic services designed to support your mental wellness journey in a safe, creative environment.
               </p>
-              <Button size="lg" className="rounded-full px-8" onClick={() => setLocation("/contact") }>
+              <Button size="lg" className="rounded-full px-8" onClick={() => setLocation("/join") }>
                 Book a Session
               </Button>
             </div>

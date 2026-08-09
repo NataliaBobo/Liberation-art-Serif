@@ -45,7 +45,7 @@ export default function Home() {
               <Button size="lg" className="text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all" onClick={() => setLocation("/services") }>
                 Explore Services
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full border-2 bg-background/50 backdrop-blur-sm" onClick={() => setLocation("/contact") }>
+              <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full border-2 bg-background/50 backdrop-blur-sm" onClick={() => setLocation("/join") }>
                 Join Our Mission
               </Button>
               <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg hover:shadow-xl transition-all" onClick={() => setLocation("/about") }>

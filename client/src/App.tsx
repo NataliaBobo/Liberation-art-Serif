@@ -9,7 +9,7 @@ import About from "@/pages/about";
 import Collections from "@/pages/collections";
 import Services from "@/pages/services";
 import Gallery from "@/pages/gallery";
-import Contact from "@/pages/contact";
+import Join from "@/pages/join";
 import Admin from "@/pages/admin";
 import AdminLogin from "@/pages/admin-login";
 import Bookings from "@/pages/bookings";
@@ -23,7 +23,7 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/gallery" component={Gallery} />
       <Route path="/bookings" component={Bookings} />
-      <Route path="/contact" component={Contact} />
+      <Route path="/join" component={Join} />
       <Route path="/admin-login" component={AdminLogin} />
       <Route path="/admin" component={Admin} />
       <Route component={NotFound} />

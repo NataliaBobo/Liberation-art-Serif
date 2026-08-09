@@ -23,8 +23,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { href: "/services", label: "Services" },
     { href: "/gallery", label: "Gallery" },
     { href: "/bookings", label: "Bookings" },
-    { href: "/contact", label: "Contact" },
     { href: "/admin", label: "Admin" },
+    
   ];
 
   return (
@@ -51,7 +51,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 {link.label}
               </Link>
             ))}
-            <Button className="rounded-full px-6" onClick={() => setLocation("/contact") }>
+            <Button className="rounded-full px-6" onClick={() => setLocation("/join") }>
               Join Us
             </Button>
           </nav>

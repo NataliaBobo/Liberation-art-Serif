@@ -113,8 +113,8 @@ export default function Gallery() {
             <p className="text-xl text-muted-foreground leading-relaxed mb-8">
               Outdoor sessions, creative expressions, and the healing moments that define our mobile art therapy journey.
             </p>
-            <Button size="lg" className="rounded-full px-8" onClick={() => setLocation("/contact") }>
-              Get in Touch
+            <Button size="lg" className="rounded-full px-8" onClick={() => setLocation("/join") }>
+              Join Us
             </Button>
           </motion.div>
         </div>

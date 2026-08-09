@@ -45,8 +45,8 @@ export default function Collections() {
             <p className="text-xl text-muted-foreground leading-relaxed mb-8">
               Explore our curated art therapy collections, support packages, and creative resources designed to help you heal, reflect, and grow.
             </p>
-            <Button size="lg" className="rounded-full px-8" onClick={() => setLocation("/contact") }>
-              Contact Us
+            <Button size="lg" className="rounded-full px-8" onClick={() => setLocation("/join") }>
+              Join Us
             </Button>
           </motion.div>
         </div>
