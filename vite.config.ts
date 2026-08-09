@@ -30,23 +30,22 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  css: {
-    postcss: {
-      plugins: [],
-    },
-  },
-  base: process.env.NODE_ENV === "production" ? "/Liberation-art-Serif/" : "/",
+  base: "/Liberation-art-Serif/",
   root: path.resolve(import.meta.dirname, "client"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+  },
+  css: {
+    postcss: {
+      plugins: [],
+    },
   },
   server: {
     host: "0.0.0.0",
     allowedHosts: true,
     fs: {
       strict: true,
-      deny: ["**/.*"],
     },
   },
 });
