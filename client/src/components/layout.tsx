@@ -20,6 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/collections", label: "Collections" },
+    { href: "/events", label: "Events" },
     { href: "/services", label: "Services" },
     { href: "/gallery", label: "Gallery" },
     { href: "/bookings", label: "Bookings" },
@@ -41,7 +42,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="bg-primary text-primary-foreground p-2 rounded-lg">
               <Paintbrush className="w-5 h-5" />
             </div>
-            DonCastro Galleria
+            Liberation Art therapy studio
           </Link>
 
           {/* Desktop Nav */}
@@ -83,7 +84,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <div className="flex items-center gap-2 text-xl font-serif font-bold mb-4">
               <Paintbrush className="w-5 h-5" />
-              DonCastro Galleria
+              Liberation Art therapy studio
             </div>
             <p className="opacity-80 leading-relaxed max-w-xs">
               Healing through art. A mobile art therapy unit transforming mental health support through creative expression, accessibility, and community care.
@@ -109,7 +110,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <div className="container mx-auto px-4 mt-12 pt-8 border-t border-primary-foreground/20 text-center opacity-60 text-sm">
-          © {new Date().getFullYear()} DonCastro Galleria. All rights reserved.
+          © {new Date().getFullYear()} Liberation Art therapy studio. All rights reserved.
         </div>
       </footer>
     </div>

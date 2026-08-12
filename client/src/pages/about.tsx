@@ -42,13 +42,13 @@ export default function About() {
             className="max-w-4xl mx-auto text-center"
           >
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-5 border border-primary/20">
-              About DonCastro Galleria
+              About Liberation Art therapy studio
             </span>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
               Transforming Mental Health Care Through Art
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-              DonCastro Galleria repurposes a shipping container into a mobile art therapy unit. Piloted at KCA University, we build safe, creative spaces where emotional healing meets community support.
+              Liberation Art therapy studio repurposes a shipping container into a mobile art therapy unit. Piloted at KCA University, we build safe, creative spaces where emotional healing meets community support.
             </p>
             <Button size="lg" className="rounded-full px-10" onClick={() => setLocation("/services") }>
               View Services

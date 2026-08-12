@@ -38,7 +38,7 @@ export default function Join() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-5 border border-primary/20">
-              Join DonCastro Galleria
+              Join Liberation Art therapy studio
             </span>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Join Us</h1>
             <p className="text-xl text-muted-foreground leading-relaxed">

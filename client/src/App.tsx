@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import Collections from "@/pages/collections";
+import Events from "@/pages/events";
 import Services from "@/pages/services";
 import Gallery from "@/pages/gallery";
 import Join from "@/pages/join";
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/collections" component={Collections} />
+      <Route path="/events" component={Events} />
       <Route path="/services" component={Services} />
       <Route path="/gallery" component={Gallery} />
       <Route path="/bookings" component={Bookings} />
