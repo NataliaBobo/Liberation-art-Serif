@@ -13,9 +13,10 @@ import {
   Trash2,
   Plus,
   X,
+  LogOut,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { isAdminLoggedIn } from "@/lib/auth";
+import { isAdminLoggedIn, logoutAdmin } from "@/lib/auth";
 
 const iconOptions = [
   "Gift",
@@ -59,13 +60,6 @@ interface EventItem {
   activities: string[];
 }
 
-/*
- * These are the events that currently exist in your events.tsx.
- *
- * The admin will use these as the starting events.
- * Changes are stored in localStorage.
- */
-
 const defaultEvents: EventItem[] = [
   {
     id: "wellness-festival-art-nature",
@@ -84,7 +78,6 @@ const defaultEvents: EventItem[] = [
     spots: "100 spots",
     activities: ["Live Painting", "Nature works", "Yoga sessions"],
   },
-
   {
     id: "outdoor-painting-workshop",
     title: "Outdoor Painting Workshop",
@@ -102,7 +95,6 @@ const defaultEvents: EventItem[] = [
     spots: "30 spots",
     activities: ["Art therapy", "Painting"],
   },
-
   {
     id: "mindfulness-art-retreat",
     title: "Mindfulness & Art Retreat",
@@ -120,7 +112,6 @@ const defaultEvents: EventItem[] = [
     spots: "25 slots",
     activities: ["Art session", "Journaling", "Meditation"],
   },
-
   {
     id: "healing-drum-circle",
     title: "Healing Drum Circle",
@@ -138,7 +129,6 @@ const defaultEvents: EventItem[] = [
     spots: "40 spots",
     activities: ["Drumming", "Community Bonding", "Sound Healing"],
   },
-
   {
     id: "safari-art-experience",
     title: "Safari Art Experience",
@@ -162,23 +152,22 @@ export default function Admin() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
 
-  // --------------------------------------------------
+  // =====================================================
   // SERVICE STATES
-  // --------------------------------------------------
+  // =====================================================
 
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
   const [iconName, setIconName] = React.useState("Gift");
 
-  // --------------------------------------------------
+  // =====================================================
   // EVENT STATES
-  // --------------------------------------------------
+  // =====================================================
 
   const [events, setEvents] = React.useState<EventItem[]>([]);
-  const [editingEventId, setEditingEventId] = React.useState<string | null>(
-    null
-  );
+  const [editingEventId, setEditingEventId] =
+    React.useState<string | null>(null);
 
   const [eventTitle, setEventTitle] = React.useState("");
   const [eventBadge, setEventBadge] = React.useState("Workshop");
@@ -188,14 +177,16 @@ export default function Admin() {
   const [eventImageUrl, setEventImageUrl] = React.useState("");
   const [eventVenueDescription, setEventVenueDescription] =
     React.useState("");
-  const [eventDescription, setEventDescription] = React.useState("");
+  const [eventDescription, setEventDescription] =
+    React.useState("");
   const [eventCost, setEventCost] = React.useState("");
   const [eventSpots, setEventSpots] = React.useState("");
-  const [eventActivities, setEventActivities] = React.useState("");
+  const [eventActivities, setEventActivities] =
+    React.useState("");
 
-  // --------------------------------------------------
+  // =====================================================
   // ADMIN AUTHENTICATION
-  // --------------------------------------------------
+  // =====================================================
 
   React.useEffect(() => {
     if (!isAdminLoggedIn()) {
@@ -203,9 +194,24 @@ export default function Admin() {
     }
   }, [setLocation]);
 
-  // --------------------------------------------------
+  // =====================================================
+  // LOGOUT
+  // =====================================================
+
+  const handleLogout = () => {
+    logoutAdmin();
+
+    toast({
+      title: "Logged out",
+      description: "You have been logged out of the admin account.",
+    });
+
+    setLocation("/admin-login");
+  };
+
+  // =====================================================
   // LOAD EVENTS
-  // --------------------------------------------------
+  // =====================================================
 
   React.useEffect(() => {
     if (typeof window === "undefined") return;
@@ -225,18 +231,17 @@ export default function Admin() {
       }
     }
 
-    // First time opening admin:
-    // use the existing project events.
     setEvents(defaultEvents);
+
     localStorage.setItem(
       "doncastro_events",
       JSON.stringify(defaultEvents)
     );
   }, []);
 
-  // --------------------------------------------------
+  // =====================================================
   // SAVE EVENTS
-  // --------------------------------------------------
+  // =====================================================
 
   const saveEvents = (updatedEvents: EventItem[]) => {
     setEvents(updatedEvents);
@@ -247,23 +252,28 @@ export default function Admin() {
     );
   };
 
-  // --------------------------------------------------
-  // SERVICE CREATION
-  // --------------------------------------------------
+  // =====================================================
+  // ADD SERVICE
+  // =====================================================
 
   const handleAddProduct = () => {
     if (!title.trim() || !description.trim()) {
       toast({
         title: "Missing fields",
-        description: "Please provide a title and description.",
+        description:
+          "Please provide a title and description.",
       });
 
       return;
     }
 
-    const existing = localStorage.getItem("doncastro_custom_services");
+    const existing = localStorage.getItem(
+      "doncastro_custom_services"
+    );
 
-    const list: Service[] = existing ? JSON.parse(existing) : [];
+    const list: Service[] = existing
+      ? JSON.parse(existing)
+      : [];
 
     list.push({
       title: title.trim(),
@@ -290,9 +300,9 @@ export default function Admin() {
     });
   };
 
-  // --------------------------------------------------
+  // =====================================================
   // CLEAR EVENT FORM
-  // --------------------------------------------------
+  // =====================================================
 
   const clearEventForm = () => {
     setEditingEventId(null);
@@ -310,9 +320,9 @@ export default function Admin() {
     setEventActivities("");
   };
 
-  // --------------------------------------------------
-  // LOAD EVENT INTO EDIT FORM
-  // --------------------------------------------------
+  // =====================================================
+  // EDIT EVENT
+  // =====================================================
 
   const editEvent = (event: EventItem) => {
     setEditingEventId(event.id);
@@ -335,9 +345,9 @@ export default function Admin() {
     });
   };
 
-  // --------------------------------------------------
+  // =====================================================
   // ADD OR UPDATE EVENT
-  // --------------------------------------------------
+  // =====================================================
 
   const handleSaveEvent = () => {
     if (
@@ -361,7 +371,7 @@ export default function Admin() {
       .map((activity) => activity.trim())
       .filter(Boolean);
 
-    // UPDATE
+    // UPDATE EXISTING EVENT
     if (editingEventId) {
       const updatedEvents = events.map((event) => {
         if (event.id !== editingEventId) {
@@ -376,7 +386,8 @@ export default function Admin() {
           time: eventTime.trim(),
           location: eventLocation.trim(),
           imageUrl: eventImageUrl.trim(),
-          venueDescription: eventVenueDescription.trim(),
+          venueDescription:
+            eventVenueDescription.trim(),
           description: eventDescription.trim(),
           cost: eventCost.trim() || "Free",
           spots: eventSpots.trim() || "Open",
@@ -405,7 +416,8 @@ export default function Admin() {
       time: eventTime.trim(),
       location: eventLocation.trim(),
       imageUrl: eventImageUrl.trim(),
-      venueDescription: eventVenueDescription.trim(),
+      venueDescription:
+        eventVenueDescription.trim(),
       description: eventDescription.trim(),
       cost: eventCost.trim() || "Free",
       spots: eventSpots.trim() || "Open",
@@ -422,12 +434,14 @@ export default function Admin() {
     clearEventForm();
   };
 
-  // --------------------------------------------------
+  // =====================================================
   // DELETE EVENT
-  // --------------------------------------------------
+  // =====================================================
 
   const deleteEvent = (id: string) => {
-    const event = events.find((item) => item.id === id);
+    const event = events.find(
+      (item) => item.id === id
+    );
 
     if (!event) return;
 
@@ -455,18 +469,30 @@ export default function Admin() {
 
   return (
     <Layout>
-      {/* ==================================================
+
+      {/* =====================================================
           ADMIN HEADER
-      ================================================== */}
+      ===================================================== */}
 
       <section className="relative min-h-[55vh] flex items-center pt-28 pb-16 bg-secondary/10 overflow-hidden">
+
         <div className="container mx-auto px-4 text-center">
+
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            initial={{
+              opacity: 0,
+              y: 24,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
             className="max-w-4xl mx-auto"
           >
+
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-5 border border-primary/20">
               Admin Support
             </span>
@@ -479,33 +505,67 @@ export default function Admin() {
               Manage services, events, bookings and event information.
             </p>
 
-            <Button
-              size="lg"
-              className="rounded-full px-8"
-              onClick={() => setLocation("/bookings")}
-            >
-              Manage Bookings
-            </Button>
+            {/* =====================================================
+                ADMIN ACTION BUTTONS
+            ===================================================== */}
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+              <Button
+                size="lg"
+                className="rounded-full px-8"
+                onClick={() =>
+                  setLocation("/bookings")
+                }
+              >
+                Manage Bookings
+              </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full px-8"
+                onClick={handleLogout}
+              >
+                <LogOut className="w-5 h-5 mr-2" />
+                Logout
+              </Button>
+
+            </div>
+
           </motion.div>
+
         </div>
+
       </section>
 
-      {/* ==================================================
-          SERVICES
-      ================================================== */}
+      {/* =====================================================
+          SERVICE MANAGEMENT
+      ===================================================== */}
 
       <section className="py-20 bg-background">
+
         <div className="container mx-auto px-4 max-w-6xl">
+
           <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
 
             {/* CREATE SERVICE */}
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
               className="rounded-3xl bg-card border border-border p-10 shadow-sm"
             >
+
               <h2 className="text-3xl font-bold mb-6">
                 Create a New Service
               </h2>
@@ -513,19 +573,24 @@ export default function Admin() {
               <div className="space-y-5">
 
                 <div>
+
                   <label className="block text-sm font-medium mb-2">
                     Service title
                   </label>
 
                   <input
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) =>
+                      setTitle(e.target.value)
+                    }
                     className="w-full p-3 rounded-md border bg-background"
                     placeholder="Example: Sound Bath"
                   />
+
                 </div>
 
                 <div>
+
                   <label className="block text-sm font-medium mb-2">
                     Description
                   </label>
@@ -538,9 +603,11 @@ export default function Admin() {
                     className="w-full min-h-[120px] p-3 rounded-md border bg-background resize-vertical"
                     placeholder="Describe what the service offers."
                   />
+
                 </div>
 
                 <div>
+
                   <label className="block text-sm font-medium mb-2">
                     Image URL
                   </label>
@@ -553,9 +620,11 @@ export default function Admin() {
                     className="w-full p-3 rounded-md border bg-background"
                     placeholder="Optional image URL"
                   />
+
                 </div>
 
                 <div>
+
                   <label className="block text-sm font-medium mb-2">
                     Icon
                   </label>
@@ -567,12 +636,20 @@ export default function Admin() {
                     }
                     className="w-full p-3 rounded-md border bg-background"
                   >
-                    {iconOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
+
+                    {iconOptions.map(
+                      (option) => (
+                        <option
+                          key={option}
+                          value={option}
+                        >
+                          {option}
+                        </option>
+                      )
+                    )}
+
                   </select>
+
                 </div>
 
                 <Button
@@ -582,25 +659,38 @@ export default function Admin() {
                 >
                   Add Service
                 </Button>
+
               </div>
+
             </motion.div>
 
-            {/* ADMIN INFO */}
+            {/* ADMIN INFORMATION */}
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
               className="rounded-3xl bg-card border border-border p-10 shadow-sm"
             >
+
               <div className="space-y-6">
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-lg text-primary">
+
+                  <div className="bg-primary/10 p-3 rounded-lg text-primary shrink-0">
                     <Users className="w-6 h-6" />
                   </div>
 
                   <div>
+
                     <h3 className="font-bold">
                       Administrator
                     </h3>
@@ -608,15 +698,19 @@ export default function Admin() {
                     <p className="text-muted-foreground">
                       Fidel Castro
                     </p>
+
                   </div>
+
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-lg text-primary">
+
+                  <div className="bg-primary/10 p-3 rounded-lg text-primary shrink-0">
                     <HeartHandshake className="w-6 h-6" />
                   </div>
 
                   <div>
+
                     <h3 className="font-bold">
                       Contact Info
                     </h3>
@@ -628,38 +722,48 @@ export default function Admin() {
                     <p className="text-muted-foreground">
                       Email: fidelcastro6403@gmail.com
                     </p>
+
                   </div>
+
                 </div>
 
               </div>
+
             </motion.div>
 
           </div>
+
         </div>
+
       </section>
 
-      {/* ==================================================
+      {/* =====================================================
           EVENT MANAGEMENT
-      ================================================== */}
+      ===================================================== */}
 
       <section className="py-20 bg-muted/30">
+
         <div className="container mx-auto px-4 max-w-6xl">
 
           <div className="mb-10">
+
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm">
               <CalendarDays className="w-4 h-4" />
               Event Management
             </span>
 
             <h2 className="text-4xl font-bold mt-5">
+
               {editingEventId
                 ? "Edit Event"
                 : "Create New Event"}
+
             </h2>
 
             <p className="text-muted-foreground mt-2">
               Add, update or remove events displayed on the website.
             </p>
+
           </div>
 
           {/* EVENT FORM */}
@@ -671,6 +775,7 @@ export default function Admin() {
               {/* TITLE */}
 
               <div>
+
                 <label className="block text-sm font-medium mb-2">
                   Event Title *
                 </label>
@@ -683,11 +788,13 @@ export default function Admin() {
                   className="w-full p-3 rounded-md border bg-background"
                   placeholder="Example: Art Therapy Workshop"
                 />
+
               </div>
 
-              {/* BADGE */}
+              {/* TYPE */}
 
               <div>
+
                 <label className="block text-sm font-medium mb-2">
                   Event Type
                 </label>
@@ -699,6 +806,7 @@ export default function Admin() {
                   }
                   className="w-full p-3 rounded-md border bg-background"
                 >
+
                   <option value="Workshop">
                     Workshop
                   </option>
@@ -714,12 +822,15 @@ export default function Admin() {
                   <option value="Retreat">
                     Retreat
                   </option>
+
                 </select>
+
               </div>
 
               {/* DATE */}
 
               <div>
+
                 <label className="block text-sm font-medium mb-2">
                   Date *
                 </label>
@@ -732,11 +843,13 @@ export default function Admin() {
                   className="w-full p-3 rounded-md border bg-background"
                   placeholder="Example: 25 Aug 2026"
                 />
+
               </div>
 
               {/* TIME */}
 
               <div>
+
                 <label className="block text-sm font-medium mb-2">
                   Time *
                 </label>
@@ -749,11 +862,13 @@ export default function Admin() {
                   className="w-full p-3 rounded-md border bg-background"
                   placeholder="Example: 10:00am - 2:00pm"
                 />
+
               </div>
 
               {/* LOCATION */}
 
               <div>
+
                 <label className="block text-sm font-medium mb-2">
                   Location *
                 </label>
@@ -766,11 +881,13 @@ export default function Admin() {
                   className="w-full p-3 rounded-md border bg-background"
                   placeholder="Example: KCA University"
                 />
+
               </div>
 
               {/* IMAGE */}
 
               <div>
+
                 <label className="block text-sm font-medium mb-2">
                   Image URL
                 </label>
@@ -783,11 +900,13 @@ export default function Admin() {
                   className="w-full p-3 rounded-md border bg-background"
                   placeholder="https://..."
                 />
+
               </div>
 
               {/* COST */}
 
               <div>
+
                 <label className="block text-sm font-medium mb-2">
                   Cost
                 </label>
@@ -800,11 +919,13 @@ export default function Admin() {
                   className="w-full p-3 rounded-md border bg-background"
                   placeholder="Example: Ksh 500 or Free"
                 />
+
               </div>
 
               {/* SPOTS */}
 
               <div>
+
                 <label className="block text-sm font-medium mb-2">
                   Available Spots
                 </label>
@@ -817,11 +938,13 @@ export default function Admin() {
                   className="w-full p-3 rounded-md border bg-background"
                   placeholder="Example: 30 spots"
                 />
+
               </div>
 
               {/* DESCRIPTION */}
 
               <div className="md:col-span-2">
+
                 <label className="block text-sm font-medium mb-2">
                   Event Description *
                 </label>
@@ -834,11 +957,13 @@ export default function Admin() {
                   className="w-full min-h-[130px] p-3 rounded-md border bg-background"
                   placeholder="Describe the event..."
                 />
+
               </div>
 
               {/* VENUE DESCRIPTION */}
 
               <div className="md:col-span-2">
+
                 <label className="block text-sm font-medium mb-2">
                   Venue Description
                 </label>
@@ -851,11 +976,13 @@ export default function Admin() {
                   className="w-full min-h-[110px] p-3 rounded-md border bg-background"
                   placeholder="Describe the venue..."
                 />
+
               </div>
 
               {/* ACTIVITIES */}
 
               <div className="md:col-span-2">
+
                 <label className="block text-sm font-medium mb-2">
                   Activities
                 </label>
@@ -872,11 +999,12 @@ export default function Admin() {
                 <p className="text-xs text-muted-foreground mt-2">
                   Separate activities with commas.
                 </p>
+
               </div>
 
             </div>
 
-            {/* FORM BUTTONS */}
+            {/* EVENT FORM BUTTONS */}
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
 
@@ -885,6 +1013,7 @@ export default function Admin() {
                 className="flex-1"
                 onClick={handleSaveEvent}
               >
+
                 {editingEventId ? (
                   <>
                     <Pencil className="w-5 h-5 mr-2" />
@@ -896,6 +1025,7 @@ export default function Admin() {
                     Add Event
                   </>
                 )}
+
               </Button>
 
               {editingEventId && (
@@ -910,32 +1040,45 @@ export default function Admin() {
               )}
 
             </div>
+
           </div>
+
         </div>
+
       </section>
 
-      {/* ==================================================
+      {/* =====================================================
           EXISTING EVENTS
-      ================================================== */}
+      ===================================================== */}
 
       <section className="py-20 bg-background">
+
         <div className="container mx-auto px-4 max-w-6xl">
 
           <div className="flex items-center justify-between mb-10">
+
             <div>
+
               <h2 className="text-4xl font-bold">
                 Manage Events
               </h2>
 
               <p className="text-muted-foreground mt-2">
                 {events.length} event
-                {events.length !== 1 ? "s" : ""} available
+                {events.length !== 1
+                  ? "s"
+                  : ""}{" "}
+                available
               </p>
+
             </div>
+
           </div>
 
           {events.length === 0 ? (
+
             <div className="text-center py-16 border-2 border-dashed rounded-3xl">
+
               <CalendarDays className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
 
               <h3 className="text-xl font-bold">
@@ -945,23 +1088,32 @@ export default function Admin() {
               <p className="text-muted-foreground mt-2">
                 Create your first event above.
               </p>
+
             </div>
+
           ) : (
+
             <div className="grid gap-6 md:grid-cols-2">
 
               {events.map((event) => (
+
                 <motion.div
                   key={event.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{
+                    opacity: 0,
+                    y: 20,
+                  }}
                   whileInView={{
                     opacity: 1,
                     y: 0,
                   }}
-                  viewport={{ once: true }}
+                  viewport={{
+                    once: true,
+                  }}
                   className="rounded-3xl bg-card border border-border overflow-hidden shadow-sm"
                 >
 
-                  {/* IMAGE */}
+                  {/* EVENT IMAGE */}
 
                   {event.imageUrl && (
                     <img
@@ -991,28 +1143,48 @@ export default function Admin() {
                       {event.description}
                     </p>
 
-                    {/* DETAILS */}
+                    {/* EVENT DETAILS */}
 
                     <div className="mt-6 space-y-3 text-sm">
 
                       <div className="flex items-center gap-3">
+
                         <CalendarDays className="w-5 h-5 text-primary" />
-                        <span>{event.date}</span>
+
+                        <span>
+                          {event.date}
+                        </span>
+
                       </div>
 
                       <div className="flex items-center gap-3">
+
                         <Clock3 className="w-5 h-5 text-primary" />
-                        <span>{event.time}</span>
+
+                        <span>
+                          {event.time}
+                        </span>
+
                       </div>
 
                       <div className="flex items-center gap-3">
+
                         <MapPin className="w-5 h-5 text-primary" />
-                        <span>{event.location}</span>
+
+                        <span>
+                          {event.location}
+                        </span>
+
                       </div>
 
                       <div className="flex items-center gap-3">
+
                         <HeartHandshake className="w-5 h-5 text-primary" />
-                        <span>{event.spots}</span>
+
+                        <span>
+                          {event.spots}
+                        </span>
+
                       </div>
 
                     </div>
@@ -1020,6 +1192,7 @@ export default function Admin() {
                     {/* COST */}
 
                     <div className="mt-5 rounded-2xl bg-primary/5 border border-primary/20 p-4">
+
                       <p className="text-xs uppercase tracking-wider text-muted-foreground">
                         Cost
                       </p>
@@ -1027,21 +1200,28 @@ export default function Admin() {
                       <p className="text-xl font-bold text-primary mt-1">
                         {event.cost}
                       </p>
+
                     </div>
 
                     {/* ACTIVITIES */}
 
                     {event.activities.length > 0 && (
+
                       <div className="mt-5 flex flex-wrap gap-2">
-                        {event.activities.map((activity) => (
-                          <span
-                            key={activity}
-                            className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs text-primary"
-                          >
-                            {activity}
-                          </span>
-                        ))}
+
+                        {event.activities.map(
+                          (activity) => (
+                            <span
+                              key={activity}
+                              className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs text-primary"
+                            >
+                              {activity}
+                            </span>
+                          )
+                        )}
+
                       </div>
+
                     )}
 
                     {/* ACTION BUTTONS */}
@@ -1051,10 +1231,15 @@ export default function Admin() {
                       <Button
                         variant="outline"
                         className="flex-1"
-                        onClick={() => editEvent(event)}
+                        onClick={() =>
+                          editEvent(event)
+                        }
                       >
+
                         <Pencil className="w-4 h-4 mr-2" />
+
                         Edit
+
                       </Button>
 
                       <Button
@@ -1064,21 +1249,29 @@ export default function Admin() {
                           deleteEvent(event.id)
                         }
                       >
+
                         <Trash2 className="w-4 h-4 mr-2" />
+
                         Delete
+
                       </Button>
 
                     </div>
 
                   </div>
+
                 </motion.div>
+
               ))}
 
             </div>
+
           )}
 
         </div>
+
       </section>
+
     </Layout>
   );
 }
